@@ -1,0 +1,69 @@
+﻿@model IEnumerable<simpress_challenge.Models.tblCategoriaProduto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categorias</h2>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", "ProductCategories")">
+        Cadastrar
+    </a>
+</p>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <font color="green">@ViewBag.message</font>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th>
+                Ações
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @if (item.Ativo)
+                    {
+                        <span>Sim</span>
+                    }
+                    else
+                    {
+                        <span>Não</span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-success" href="@Url.Action("Edit", "ProductCategories", new { id = item.Id })">
+                        Atualizar
+                    </a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete", "ProductCategories", new { id = item.Id })">
+                        Deletar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
